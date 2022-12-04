@@ -19,7 +19,7 @@
   },
   "main": "src/server.js",
   "scripts": {
-    "startdev": "npx sequelize-cli init",
+    "startdev": "cd ./src && npx sequelize-cli init",
     "prestart": "npx sequelize-cli db:create && npx sequelize-cli db:migrate",
     "start": "node .",
     "drop": "npx sequelize-cli db:drop",
