@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     creatDate: {
       type: 'TIMESTAMP',
       allowNull: false,
+      defaultValue: new Date(),
     },
   }, {
     timestamps: false,
