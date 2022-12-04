@@ -1,5 +1,3 @@
-const templateRouter = require('./template.router');
+const userRouter = require('./user.router');
 
-module.exports = {
-  templateRouter,
-};
+module.exports = { userRouter };
