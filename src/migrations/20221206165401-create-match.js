@@ -1,5 +1,5 @@
 module.exports = {
-  up: async (queryInterface, Sequelize) => queryInterface.createTable('match', {
+  up: async (queryInterface, Sequelize) => queryInterface.createTable('matchs', {
     id: {
       allowNull: false,
       autoIncrement: true,
