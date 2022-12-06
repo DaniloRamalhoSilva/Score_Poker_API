@@ -37,6 +37,8 @@ const getById = async (id) => {
 };
 
 const upDateById = async ({ id, post }) => {
+  const resut = await model.findByPk(id);
+  if (!resut) return { type: 'NOT_REGISTERED', message: 'Register does not exist' };
   await model.update(post, { where: { id } });
   const { message } = await getById(id);
   return { type: null, message };
