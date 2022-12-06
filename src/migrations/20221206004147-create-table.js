@@ -11,6 +11,15 @@ module.exports = {
       type: 'TIMESTAMP',
       field: 'creat_date',
     },
+    userId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      field: 'user_id',
+      references: {
+        model: 'users',
+        key: 'id',
+      },
+    },
   }),
 
   // eslint-disable-next-line no-unused-vars
