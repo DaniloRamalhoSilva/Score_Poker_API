@@ -7,4 +7,21 @@ const validateUserFilds = (req, res, next) => {
   return next();
 };
 
-module.exports = { validateUserFilds };
+const validateConfigFilds = (req, res, next) => {
+  const {
+    pointsFirst,
+    pointsSecond,
+    pointsThird,
+    minUsers,
+  } = req.body;
+
+  if (!pointsFirst || !pointsSecond || !pointsThird || !minUsers) {
+    return res.status(400).json({ message: 'Some required fields are missing' });
+  }
+  return next();
+};
+
+module.exports = {
+  validateUserFilds,
+  validateConfigFilds,
+};
