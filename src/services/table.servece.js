@@ -1,20 +1,13 @@
 const { verifyToken } = require('../auth/jwtFunctions');
-const { Tables, User } = require('../models');
+const { Tables } = require('../models');
 
 const model = Tables;
 
 const create = async (token) => {
-  const { data: { userId } } = verifyToken(token);
-  const { id } = await model.create({ userId });
-  const resut = await model.findByPk(id, {
-    attributes: { exclude: ['userId'] },
-    include: [{
-      model: User,
-      as: 'user',
-      attributes: { exclude: ['password', 'creatDate', 'image', 'creatDate'] },
-    }],
-  });
-  return { type: null, message: resut };
+  const { data } = verifyToken(token);
+  const { id } = await model.create({ userId: data.userId });
+  const { dataValues } = await model.findByPk(id, { attributes: { exclude: ['userId'] } });
+  return { type: null, message: { ...dataValues, user: data } };
 };
 
 module.exports = { create };
