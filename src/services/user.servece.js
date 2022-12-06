@@ -16,22 +16,23 @@ const getByUserAndPassword = async ({ password, name }) => {
 };
 
 const create = async (post) => {
-  const name = await model.findOne({ where: { name: post.name } });
+  const user = await model.findOne({ where: { name: post.name } });
 
-  if (name) {
+  if (user) {
     return { type: 'ALREADY_REGISTERED', message: 'User already registered' };
   }
   const resut = await model.create(post);
-  return { type: null, message: resut };
+  const { id, name, image, creatDate } = resut;
+  return { type: null, message: { id, name, image, creatDate } };
 };
 
 const getAll = async () => {
-  const resut = await model.findAll();
+  const resut = await model.findAll({ attributes: { exclude: ['password'] } });
   return { type: null, message: resut };
 };
 
 const getById = async (id) => {
-  const resut = await model.findByPk(id);
+  const resut = await model.findByPk(id, { attributes: { exclude: ['password'] } });
   if (!resut) return { type: 'NOT_REGISTERED', message: 'Register does not exist' };
   return { type: null, message: resut };
 };
