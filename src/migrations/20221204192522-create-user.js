@@ -11,10 +11,12 @@ module.exports = {
       type: Sequelize.STRING,
       field: 'name',
     },
+    password: { type: Sequelize.STRING },
     image: { type: Sequelize.STRING },
     creatDate: {
       allowNull: false,
       type: 'TIMESTAMP',
+      field: 'creat_date',
     },
   }),
 
