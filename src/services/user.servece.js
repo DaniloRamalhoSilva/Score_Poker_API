@@ -1,9 +1,26 @@
 const { Op } = require('sequelize');
-const { UserModel } = require('../models');
+const { createToken } = require('../auth/jwtFunctions');
+const { User } = require('../models');
 
-const model = UserModel;
+const model = User;
+
+const getByUserAndPassword = async ({ password, name }) => {
+  const user = await User.findOne({ where: { password, name } });
+  if (!user || user.password !== password) {
+    return { type: 'INVALID_FILDS', message: 'Invalid fields' };
+  }
+
+  const token = createToken(user);
+
+  return { type: null, message: token };
+};
 
 const create = async (post) => {
+  const name = await model.findOne({ where: { name: post.name } });
+
+  if (name) {
+    return { type: 'ALREADY_REGISTERED', message: 'User already registered' };
+  }
   const resut = await model.create(post);
   return { type: null, message: resut };
 };
@@ -39,6 +56,7 @@ const search = async (q) => {
 };
 
 module.exports = {
+  getByUserAndPassword,
   create,
   getAll,
   getById,

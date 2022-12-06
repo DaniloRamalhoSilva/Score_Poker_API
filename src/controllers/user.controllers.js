@@ -3,6 +3,13 @@ const errorMap = require('../utils/errorMap');
 
 const service = userService;
 
+const logar = async (req, res) => {
+  const post = req.body;
+  const { type, message } = await service.getByUserAndPassword(post);
+  if (type) return res.status(errorMap.mapError(type)).json({ message });
+  return res.status(200).json(message);
+};
+
 const create = async (req, res) => {
   const post = req.body;
   const { type, message } = await service.create(post);
@@ -46,6 +53,7 @@ const search = async (req, res) => {
 };
 
 module.exports = {
+  logar,
   create,
   getAll,
   getById,
