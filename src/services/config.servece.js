@@ -1,19 +1,20 @@
 const { Configs } = require('../models');
 
 const model = Configs;
-const getById = async (id) => {
-  console.log(id);
-  const resut = await model.findByPk(id);
+const IdConfig = 1;
+
+const getConfig = async () => {
+  const resut = await model.findByPk(IdConfig, { attributes: { exclude: ['id'] } });
   if (!resut) return { type: 'NOT_REGISTERED', message: 'Register does not exist' };
   return { type: null, message: resut };
 };
 
-const upDateById = async ({ id, post }) => {
-  await model.update(post, { where: { id } });
+const upDateById = async (post) => {
+  await model.update(post, { where: { IdConfig } });
   return { type: null, message: post };
 };
 
 module.exports = {
-  getById,
+  getConfig,
   upDateById,
 };
