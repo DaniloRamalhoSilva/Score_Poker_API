@@ -1,10 +1,11 @@
 const express = require('express');
-const tableController = require('../controllers/table.controllers');
 const verifyToken = require('../middlewares/verifyToken');
+const tableController = require('../controllers/table.controllers');
+const matchController = require('../controllers/match.controllers');
 
 const router = express.Router();
-const controller = tableController;
 
-router.post('/', verifyToken, controller.create);
+router.post('/:id/match/podium', verifyToken, matchController.create);
+router.post('/', verifyToken, tableController.create);
 
 module.exports = router;

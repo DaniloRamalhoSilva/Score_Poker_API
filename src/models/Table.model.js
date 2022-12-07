@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userId',
       as: 'user',
     });
+    Table.hasMany(models.Matchs, {
+      foreignKey: 'tableId',
+      as: 'tables',
+    });
   };
 
   return Table;

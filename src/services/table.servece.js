@@ -10,4 +10,15 @@ const create = async (token) => {
   return { type: null, message: { ...dataValues, user: data } };
 };
 
-module.exports = { create };
+const getById = async (id) => {
+  const table = await model.findOne({ where: { id } });
+  if (!table) {
+    return { type: 'NOT_REGISTERED', message: 'Register does not exist' };
+  }
+  return { type: null, message: table };
+};
+
+module.exports = {
+  create,
+  getById,
+};
