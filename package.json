@@ -21,8 +21,7 @@
   "scripts": {
     "startdev": "cd ./src && npx sequelize-cli init",
     "prestart": "npx sequelize-cli db:create && npx sequelize-cli db:migrate",
-    "start": "npm i && node .",
-    "bild": "docker exec -it node sh -c \"npm i && npm start\"",
+    "start": "node .",
     "drop": "npx sequelize-cli db:drop",
     "seed": "npx sequelize-cli db:seed:all",
     "debug": "nodemon .",
