@@ -10,11 +10,12 @@ const suffix = {
 };
 
 const options = {
-  host: process.env.MYSQL_HOST || 'localhost',
-  port: process.env.MYSQL_PORT || '3306',
-  database: `${process.env.MYSQL_DB_NAME || nameBD}${suffix[environment] || suffix.test}`,
-  username: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || '1234',
+  host: process.env.MYSQLHOST || 'localhost',
+  port: process.env.MYSQLPORT || '3306',
+  database: `${process.env.MYSQLDATABASE || nameBD}${suffix[environment] || suffix.test}`,
+  username: process.env.MYSQLUSER || 'root',
+  password: process.env.MYSQLPASSWORD || '1234',
+  url: process.env.MYSQL_URL,
   dialect: 'mysql',
   dialectOptions: { timezone: 'Z' },
   logging: process.env.DEBUG !== 'false',
