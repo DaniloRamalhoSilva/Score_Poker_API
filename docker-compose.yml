@@ -9,7 +9,7 @@ services:
     # user: eval
     # Nome do container para facilitar execução
     container_name: node
-    # Mesmo que `docker run -t`
+    # Mesmo que `docker run -t `
     tty: true
     # Mesmo que `docker run -i`
     stdin_open: true
