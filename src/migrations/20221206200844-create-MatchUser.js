@@ -19,14 +19,6 @@ module.exports = {
         },
         primaryKey: true,
       },
-      podium: {
-        type: Sequelize.INTEGER,
-        field: 'podium',
-      },
-      scored: {
-        type: Sequelize.INTEGER,
-        field: 'scored',
-      },
     });
   },
 

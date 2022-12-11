@@ -15,6 +15,48 @@ module.exports = {
         key: 'id',
       },
     },
+    userIdFirst: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      field: 'user_id_first',
+      eferences: {
+        model: 'users',
+        key: 'id',
+      },
+    },
+    userIdSecond: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      field: 'user_id_second',
+      eferences: {
+        model: 'users',
+        key: 'id',
+      },
+    },
+    userIdThird: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      field: 'user_id_third',
+      eferences: {
+        model: 'users',
+        key: 'id',
+      },
+    },
+    pointsFirst: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      field: 'points_first',
+    },
+    pointsSecond: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      field: 'points_second',
+    },
+    pointsThird: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      field: 'points_third',
+    },
   }),
 
   // eslint-disable-next-line no-unused-vars
