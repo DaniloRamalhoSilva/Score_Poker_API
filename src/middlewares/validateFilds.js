@@ -21,7 +21,22 @@ const validateConfigFilds = (req, res, next) => {
   return next();
 };
 
+const validateMatchFilds = (req, res, next) => {
+  const {
+    userIds,
+    userIdFirst,
+    userIdSecond,
+    userIdThird,
+  } = req.body;
+
+  if (!userIds || !userIdFirst || !userIdSecond || !userIdThird) {
+    return res.status(400).json({ message: 'Some required fields are missing' });
+  }
+  return next();
+};
+
 module.exports = {
   validateUserFilds,
   validateConfigFilds,
+  validateMatchFilds,
 };
