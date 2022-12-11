@@ -8,11 +8,20 @@ let transaction;
 const create = async ({ id: tableId, post }) => {
   transaction = await sequelize.transaction();
   try {
+    const { userIdFirst, userIdSecond, userIdThird, userIds } = post;
+    const {
+      message: {
+        pointsFirst,
+        pointsSecond,
+        pointsThird,
+        minUsers,
+      },
+    } = await configService.getConfig();
+
+    if (userIds.length < minUsers) return { type: 'NOT_USER_ENOUGH', message: `the minimum number of participants is ${minUsers}` };
+
     const table = await tableService.getById(tableId);
     if (table.type) return { type: table.type, message: table.message };
-
-    const { userIdFirst, userIdSecond, userIdThird, userIds } = post;
-    const { message: { pointsFirst, pointsSecond, pointsThird } } = await configService.getConfig();
 
     const { id: matchId } = await Matchs.create({
       tableId,
