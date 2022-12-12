@@ -6,7 +6,7 @@ const verifyToken = require('../middlewares/verifyToken');
 const router = express.Router();
 const controller = configController;
 
-router.get('/', controller.getConfig);
+router.get('/', verifyToken, controller.getConfig);
 router.put('/', validateConfigFilds, verifyToken, controller.upDateById);
 
 module.exports = router;

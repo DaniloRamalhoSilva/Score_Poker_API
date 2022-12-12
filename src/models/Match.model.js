@@ -6,6 +6,33 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     tableId: { type: DataTypes.INTEGER, foreignKey: true },
+    userIdFirst: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      foreignKey: true,
+    },
+    userIdSecond: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      foreignKey: true,
+    },
+    userIdThird: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      foreignKey: true,
+    },
+    pointsFirst: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    pointsSecond: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    pointsThird: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, {
     timestamps: false,
     tableName: 'matchs',
@@ -16,6 +43,18 @@ module.exports = (sequelize, DataTypes) => {
     Match.belongsTo(models.Tables, {
       foreignKey: 'tableId',
       as: 'tables',
+    });
+    Match.belongsTo(models.User, {
+      foreignKey: 'UserIdFirst',
+      as: 'userFirst',
+    });
+    Match.belongsTo(models.User, {
+      foreignKey: 'UserIdSecond',
+      as: 'userSecond',
+    });
+    Match.belongsTo(models.User, {
+      foreignKey: 'UserIdThird',
+      as: 'userThird',
     });
   };
 

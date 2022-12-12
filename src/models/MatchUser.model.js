@@ -1,24 +1,6 @@
-module.exports = (sequelize, DataTypes) => {
-  const MatchUser = sequelize.define('MatchUser', {
-    matchId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-    },
-    podium: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0,
-    },
-    scored: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0,
-    },
-  }, {
+// eslint-disable-next-line no-unused-vars
+module.exports = (sequelize, _DataTypes) => {
+  const MatchUser = sequelize.define('MatchUser', {}, {
     timestamps: false,
     underscored: true,
     tableName: 'match_users',
@@ -26,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
 
   MatchUser.associate = (models) => {
     models.Matchs.belongsToMany(models.User, {
-      as: 'users',
+      as: 'user',
       through: MatchUser,
       foreignKey: 'matchId',
       otherKey: 'userId',
