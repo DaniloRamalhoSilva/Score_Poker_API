@@ -7,7 +7,8 @@ const matchUserController = require('../controllers/matchUser.controllers');
 
 const router = express.Router();
 
-router.get('/:id/match/podium', verifyToken, matchUserController.findOverallRating);
+router.get('/', verifyToken, matchUserController.findOverallRating);
+router.get('/:id/match/podium', verifyToken, matchUserController.findTableRanking);
 router.post('/:id/match/podium', verifyToken, validateMatchFilds, matchController.create);
 router.post('/', verifyToken, tableController.create);
 

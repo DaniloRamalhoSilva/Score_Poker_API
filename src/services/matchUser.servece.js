@@ -22,7 +22,7 @@ const findAllMatchsUser = async () => {
   return { type: null, message: matchsUser };
 };
 
-const createIndividualUse = async (users) => (
+const createIndividualUse = (users) => (
   users.map(({ id, matchs, name }) => {
     const maxPossible = matchs.reduce((acc, curr) => acc + curr.pointsFirst, 0);
     const scored = matchs.reduce((acc, curr) => {
@@ -33,6 +33,7 @@ const createIndividualUse = async (users) => (
     }, 0);
 
     return {
+      id,
       name,
       matchs: matchs.length,
       maxPossible,
@@ -62,7 +63,7 @@ const createRank = (users) => {
 const findOverallRating = async () => {
   const { message: matchsUser } = await findAllMatchsUser();
 
-  const individualUseUsers = await createIndividualUse(matchsUser);
+  const individualUseUsers = createIndividualUse(matchsUser);
 
   const groupUseUsers = createGroupUse(individualUseUsers);
 
@@ -71,8 +72,38 @@ const findOverallRating = async () => {
   return { type: null, message: rankUsers };
 };
 
+const filterTable = (tableId, users) => users.map(({ id, name, matchs }) => {
+  const matchsFilter = matchs.filter((match) => match.tableId === Number(tableId));
+  return {
+    id,
+    name,
+    matchs: matchsFilter,
+  };
+});
+
+const findTableRanking = async (id) => {
+  const { message: matchsUser } = await findAllMatchsUser();
+
+  const matchsUserTable = filterTable(id, matchsUser);
+
+  const individualUseUsers = createIndividualUse(matchsUserTable);
+
+  const { message: rankUsers } = await findOverallRating();
+
+  const rankTable = individualUseUsers.map((user, index) => ({
+    ...user,
+    groupUse: rankUsers[index].groupUse,
+    rank: rankUsers[index].rank,
+  }));
+
+  const usersTable = rankTable.filter((user) => user.matchs !== 0);
+
+  return { type: null, message: usersTable };
+};
+
 module.exports = {
   create,
   update,
   findOverallRating,
+  findTableRanking,
 };
