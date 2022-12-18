@@ -23,7 +23,7 @@ const findAllMatchsUser = async () => {
 };
 
 const createIndividualUse = (users) => (
-  users.map(({ id, matchs, name }) => {
+  users.map(({ id, matchs, name, image }) => {
     const maxPossible = matchs.reduce((acc, curr) => acc + curr.pointsFirst, 0);
     const scored = matchs.reduce((acc, curr) => {
       if (id === curr.userIdFirst) return acc + curr.pointsFirst;
@@ -35,6 +35,7 @@ const createIndividualUse = (users) => (
     return {
       id,
       name,
+      image,
       matchs: matchs.length,
       maxPossible,
       scored,
@@ -72,11 +73,12 @@ const findOverallRating = async () => {
   return { type: null, message: rankUsers };
 };
 
-const filterTable = (tableId, users) => users.map(({ id, name, matchs }) => {
+const filterTable = (tableId, users) => users.map(({ id, name, matchs, image }) => {
   const matchsFilter = matchs.filter((match) => match.tableId === Number(tableId));
   return {
     id,
     name,
+    image,
     matchs: matchsFilter,
   };
 });

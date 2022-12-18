@@ -8,7 +8,7 @@
   "private": true,
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "express": "4.17.1",
     "express-async-errors": "3.1.1",
     "joi": "17.6.0",
@@ -21,7 +21,7 @@
   "main": "src/server.js",
   "scripts": {
     "startdev": "cd ./src && npx sequelize-cli init",
-    "prestart": "cd ./src && npx sequelize-cli db:create && npx sequelize-cli db:migrate",
+    "prestart": "npx sequelize-cli db:create && npx sequelize-cli db:migrate",
     "start": "node .",
     "drop": "npx sequelize-cli db:drop",
     "seed": "npx sequelize-cli db:seed:all",
