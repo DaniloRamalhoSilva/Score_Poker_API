@@ -39,7 +39,8 @@ const createIndividualUse = (users) => (
       matchs: matchs.length,
       maxPossible,
       scored,
-      individualUse: (scored / maxPossible) * 100,
+      individualUse: (Number.isNaN((scored / maxPossible) * 100))
+        ? 0 : (scored / maxPossible) * 100,
     };
   })
 );
@@ -47,7 +48,8 @@ const createIndividualUse = (users) => (
 const createGroupUse = (users) => {
   const totalScore = users.reduce((acc, curr) => acc + curr.scored, 0);
   return users.map((user) => {
-    const groupUse = (user.scored / totalScore) * 100;
+    const groupUse = (Number.isNaN((user.scored / totalScore) * 100))
+      ? 0 : (user.scored / totalScore) * 100;
     const rank = groupUse + user.individualUse;
     return { ...user, groupUse, rank };
   });
@@ -61,6 +63,16 @@ const createRank = (users) => {
   });
 };
 
+const rankSort = (rank) => {
+  const rankSortUsers = rank.map((user) => ((user.rank) ? user : { ...user, rank: 0 }));
+  rankSortUsers.sort((a, b) => {
+    if (a.rank < b.rank) return 1;
+    if (a.rank > b.rank) return -1;
+    return 0;
+  });
+  return rankSortUsers.map((user, index) => ({ ...user, position: index + 1 }));
+};
+
 const findOverallRating = async () => {
   const { message: matchsUser } = await findAllMatchsUser();
 
@@ -70,7 +82,9 @@ const findOverallRating = async () => {
 
   const rankUsers = createRank(groupUseUsers);
 
-  return { type: null, message: rankUsers };
+  const rankSortUsers = rankSort(rankUsers);
+
+  return { type: null, message: rankSortUsers };
 };
 
 const filterTable = (tableId, users) => users.map(({ id, name, matchs, image }) => {

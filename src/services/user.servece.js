@@ -1,11 +1,19 @@
 const { Op } = require('sequelize');
 const { createToken } = require('../auth/jwtFunctions');
-const { User } = require('../models');
+const { User, Matchs } = require('../models');
 
 const model = User;
 
 const validatesUserExists = async (id) => {
-  const resut = await model.findByPk(id, { attributes: { exclude: ['password'] } });
+  const resut = await model.findByPk(
+    id,
+    {
+      include: [
+        { model: Matchs, as: 'matchs' },
+      ],
+      attributes: { exclude: ['password'] },
+    },
+  );
   if (!resut) return { type: 'NOT_REGISTERED', message: 'Register does not exist' };
   return { type: null, message: resut };
 };
