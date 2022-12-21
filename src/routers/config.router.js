@@ -8,5 +8,6 @@ const controller = configController;
 
 router.get('/', verifyToken, controller.getConfig);
 router.put('/', validateConfigFilds, verifyToken, controller.upDateById);
+router.post('/', validateConfigFilds, verifyToken, controller.createConfig);
 
 module.exports = router;

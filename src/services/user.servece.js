@@ -13,7 +13,7 @@ const validatesUserExists = async (id) => {
 const getByUserAndPassword = async ({ password, name }) => {
   const user = await User.findOne({ where: { password, name } });
   if (!user || user.password !== password) {
-    return { type: 'INVALID_FILDS', message: 'Invalid fields' };
+    return { type: 'INVALID_FILDS', message: 'invalid login or password' };
   }
 
   const token = createToken(user);
