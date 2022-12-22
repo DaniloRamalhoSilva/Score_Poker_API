@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: new Date(),
     },
+    isOpen: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
     userId: { type: DataTypes.INTEGER, foreignKey: true },
   }, {
     timestamps: false,

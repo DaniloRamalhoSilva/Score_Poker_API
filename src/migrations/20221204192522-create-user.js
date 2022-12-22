@@ -18,6 +18,12 @@ module.exports = {
       type: 'TIMESTAMP',
       field: 'creat_date',
     },
+    isActive: {
+      allowNull: false,
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+      field: 'is_Open',
+    },
   }),
 
   // eslint-disable-next-line no-unused-vars

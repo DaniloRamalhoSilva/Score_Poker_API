@@ -11,6 +11,12 @@ module.exports = {
       type: 'TIMESTAMP',
       field: 'creat_date',
     },
+    isOpen: {
+      allowNull: false,
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+      field: 'is_Open',
+    },
     userId: {
       type: Sequelize.INTEGER,
       allowNull: false,
