@@ -109,12 +109,15 @@ const findTableRanking = async (id) => {
   const rankTable = individualUseUsers.map((user, index) => ({
     ...user,
     groupUse: rankUsers[index].groupUse,
-    rank: rankUsers[index].rank,
+    rank: user.scored,
+    positionGeral: rankUsers[index].position,
   }));
 
   const usersTable = rankTable.filter((user) => user.matchs !== 0);
 
-  return { type: null, message: usersTable };
+  const rankSortUsers = rankSort(usersTable);
+
+  return { type: null, message: rankSortUsers };
 };
 
 module.exports = {
