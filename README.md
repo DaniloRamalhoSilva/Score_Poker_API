@@ -1,17 +1,40 @@
-# linter-template
+## OBJETIVO
+Este aplicação foi desenvolvida para treinar minhas habilidades de programador e para sanar um problema de rankeamento de pontos.
+Ela nada mais é do que um marcador de pontos, que criando um rankin levando em consideração o desempenho individual e o desempenho em relação ao grupo, usado nas partidas de poker da minha familha.
 
-Template repository to hold linter configurations
+## PROBLEMATICA
+Minha familia e bem grande e sempre nos reunimos para jogar poker, temos 27 jogadores, o sistema de pontuação acotece da seguinte maneira: Primeiro reunimos os jogadores disponiveis no dia (media de 8 pessoas, nem sempre todos estão disponiveis no mesmo dia), então dividimos as fixas e começamos a partida, ao final da partida os tres ultimos jogatores rebebem pontuação, o primeiro que ganhou todas as fixas 10 pontos, o que perdeu por ultimo 5 pontos, e o antepenultimo 3 pontos, e uma nova partida e iniciada. Os pontos são contabilizados em um rankin que e postado em um grupo no fecebook onde estão todos os participantes e podemos acompanhar a evolução.
+O problema é que sempre achei meio injusto esse rankin ja que algumas pessoas jogavaõa mais vezes que outras pela sua maior disponibilidade, então resolvi desenvolver um ranke que leva em consideração a quantidade de veses que cada pessoa joga, criando assim mais um fator de criterio para a posição no ranken.
 
-1 - Rode os serviços node e db com o comando docker-compose up -d --build.
+## SOLUÇÂO
+Funciona da seguinte maneira, alem da pontuação ja explicada anteriormente a aplicação analiza a quantidade de vezes que a pessoa jogou e a sua pontuação, criando um desempenho individual ex: (joguei 10 partidas, então se eu tivesse ganhado todas em primeiro teria 100 pontos e meu desenpenho individual seria de 100%).
+A aplicação leva em cosideração esses dois fatores (Desempenho em relação ao grupo + desempenho individual) e assim gera um ranking mais justo.
 
-2 - Acesse o conteiner do node e rode o comando npm i
+## TECNOLOGIAS
+### FRONT-END
+react
+vite
+bootstrap
 
-2 - Ainda no container do node rode o comando npm run startdev para criar as pastas do sequelize
+### BACK-END
+Arquitetura MSC (model-service-controller)
+express
+joi
+mysql2
+sequelize
 
-4 - Altere a pasta de config usando a pasta configExemple
+### BANCO DE DADOS
+MySQL
 
-5 - Altere o arquivo config.js com o nome do banco desejado
+## INSTRUÇOES DEV
+#FRONT-END
+para subir o servidor rode o comando: npm run dev
 
-6 - Crie as migrate e rode o comado npm run prestart para criar o banco e suas tabelas
+#BACK-END
+para subir o servidor rode o comando: npm start
+(o comando ira rodar o prestart, crinado o banco de dados e as tabelas usando o sequelize).
+se preferir pode rodar o comando: npm run prestart
+e em seguina o nodemon com o comando: npm run debug
 
-7 - Crie as seeds e rode o comando npm run seed para popular o banco
+
+
