@@ -1,40 +1,55 @@
+# Marcador de Pontos
+
 ## OBJETIVO
-Este aplicação foi desenvolvida para treinar minhas habilidades de programador e para sanar um problema de rankeamento de pontos.
-Ela nada mais é do que um marcador de pontos, que criando um rankin levando em consideração o desempenho individual e o desempenho em relação ao grupo, usado nas partidas de poker da minha familha.
+Este aplicação foi desenvolvida para treinar minhas habilidades de programador e para sanar um problema de ranqueamento de pontos. Ela nada mais é do que um marcador de pontos, que cria um ranking levando em consideração o desempenho individual e o desempenho em relação ao grupo, usado nas partidas de poker da minha família.
 
 ## PROBLEMATICA
-Minha familia e bem grande e sempre nos reunimos para jogar poker, temos 27 jogadores, o sistema de pontuação acotece da seguinte maneira: Primeiro reunimos os jogadores disponiveis no dia (media de 8 pessoas, nem sempre todos estão disponiveis no mesmo dia), então dividimos as fixas e começamos a partida, ao final da partida os tres ultimos jogatores rebebem pontuação, o primeiro que ganhou todas as fixas 10 pontos, o que perdeu por ultimo 5 pontos, e o antepenultimo 3 pontos, e uma nova partida e iniciada. Os pontos são contabilizados em um rankin que e postado em um grupo no fecebook onde estão todos os participantes e podemos acompanhar a evolução.
-O problema é que sempre achei meio injusto esse rankin ja que algumas pessoas jogavaõa mais vezes que outras pela sua maior disponibilidade, então resolvi desenvolver um ranke que leva em consideração a quantidade de veses que cada pessoa joga, criando assim mais um fator de criterio para a posição no ranken.
+Minha família e bem grande e sempre nos reunimos para jogar poker, temos 27 jogadores, o sistema de pontuação acontece da seguinte maneira: Primeiro reunimos os jogadores disponíveis no dia (media de 8 pessoas, nem sempre todos estão disponíveis no mesmo dia), então dividimos as fixas e começamos a partida, ao final da partida os três últimos jogadores rebebem pontuação, o primeiro que ganhou todas as fixas 10 pontos, o que perdeu por ultimo 5 pontos, e o antepenúltimo 3 pontos, e uma nova partida e iniciada. Os pontos são contabilizados em um ranking que e postado em um grupo no Facebook onde estão todos os participantes e podemos acompanhar a evolução.<br>
+O problema é que sempre achei meio injusto esse ranking já que algumas pessoas jogavam mais vezes que outras pela sua maior disponibilidade, então resolvi desenvolver um ranque que leva em consideração a quantidade de vezes que cada pessoa joga, criando assim mais um fator de critério para a posição no ranking.
 
-## SOLUÇÂO
-Funciona da seguinte maneira, alem da pontuação ja explicada anteriormente a aplicação analiza a quantidade de vezes que a pessoa jogou e a sua pontuação, criando um desempenho individual ex: (joguei 10 partidas, então se eu tivesse ganhado todas em primeiro teria 100 pontos e meu desenpenho individual seria de 100%).
-A aplicação leva em cosideração esses dois fatores (Desempenho em relação ao grupo + desempenho individual) e assim gera um ranking mais justo.
+## SOLUÇÃO
+Funciona da seguinte maneira, além da pontuação já explicada anteriormente a aplicação analisa a quantidade de vezes que a pessoa jogou e a sua pontuação, criando um desempenho individual ex: (joguei 10 partidas, então se eu tivesse ganhado todas em primeiro teria 100 pontos e meu desempenho individual seria de 100%).<br>
+A aplicação leva em consideração esses dois fatores (Desempenho em relação ao grupo + desempenho individual) e assim gera um ranking mais justo.
 
-## TECNOLOGIAS
-### FRONT-END
-react
-vite
-bootstrap
+* Veja algumas funcionalidades:
 
-### BACK-END
-Arquitetura MSC (model-service-controller)
-express
-joi
-mysql2
-sequelize
+  https://user-images.githubusercontent.com/69921664/218119899-efb87ccb-ed5a-4269-887a-02f5a8cf1d54.mp4
 
-### BANCO DE DADOS
-MySQL
+## TECNOLOGIAS e FRAMEWORKS USADAS
+Front-end:
+> Desenvolvido usando: React, Redux, CSS3, Bootstrap, Vite, JavaScript ES6
 
-## INSTRUÇOES DEV
-#FRONT-END
-para subir o servidor rode o comando: npm run dev
+Back-end:
+> Desenvolvido usando: Arquitetura MSC, NodeJS, ExpressJS, Sequelize, MYSQL2, JavaScript ES6, Joi
 
-#BACK-END
-para subir o servidor rode o comando: npm start
-(o comando ira rodar o prestart, crinado o banco de dados e as tabelas usando o sequelize).
-se preferir pode rodar o comando: npm run prestart
-e em seguina o nodemon com o comando: npm run debug
+Banco de dados:
+> MyAQL
 
+## INSTALANDO DEPENDENCIAS
+> Front-end:
+```bash
+npm install
+``` 
+> Backend
+```bash
+npm install
+``` 
+## EXECULTANDO APLICAÇÃO
+* Para rodar o front-end:
 
-
+  ```bash
+    npm run dev
+  ```
+* Para rodar o back-end:
+  (o comando ira rodar o prestart, crinado o banco de dados e as tabelas usando o Sequelize).
+  
+  ```bash
+  npm start
+  ```
+  
+* Para rodar o back-end como dev:
+  
+  ```bash
+  npm run prestart
+  npm run debug
+  ```
